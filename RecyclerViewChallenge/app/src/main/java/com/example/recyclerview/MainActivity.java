@@ -16,11 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    // LinkedList to hold the data
     private final LinkedList<String> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerView;
-    private WordListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +35,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int wordListSize = mWordList.size();
-                // Add a new word to the wordList.
+                // add new word to the linked list
                 mWordList.addLast("+ Word " + wordListSize);
-                // Notify the adapter, that the data has changed.
-                mRecyclerView.getAdapter().notifyItemInserted(wordListSize);
-                // Scroll to the bottom.
+                // notify adapter of data change
+                Objects.requireNonNull(mRecyclerView.getAdapter()).notifyItemInserted(wordListSize);
+                // scroll to the bottom of the list
                 mRecyclerView.smoothScrollToPosition(wordListSize);
             }
         });
-        for (int i = 0; i < 20; i++) {
-            mWordList.addLast("Word " + i);
+
+        // populate the initial data
+        for (int i = 1; i < 21; i++) {
+            mWordList.add("Word " + i);
         }
-        // Get a handle to the RecyclerView.
+
+        // set up recyclerView - find view, create and set adapter; set layout manager
         mRecyclerView = findViewById(R.id.recyclerview);
-        // Create an adapter and supply the data to be displayed.
-        mAdapter = new WordListAdapter(this, mWordList);
-        // Connect the adapter with the RecyclerView.
+        WordListAdapter mAdapter = new WordListAdapter(this, mWordList);
         mRecyclerView.setAdapter(mAdapter);
-        // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -68,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            mWordList.clear();
+            for (int i = 1; i < 21; i++) {
+                mWordList.add("Word " + i);
+            }
+            Objects.requireNonNull(mRecyclerView.getAdapter()).notifyDataSetChanged();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
