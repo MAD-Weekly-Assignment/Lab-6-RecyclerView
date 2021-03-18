@@ -1,23 +1,26 @@
-package com.example.recycleviewhomework;
+package com.example.RecycleViewHomework;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
 public class RecipePage extends AppCompatActivity {
 
-
+    //Views to bind to
     public String position;
     public TextView title;
     public ImageView imgageView;
     public TextView scroll;
 
-
+    /**
+     * On Create method for the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,10 @@ public class RecipePage extends AppCompatActivity {
         loadRecipe(position);
     }
 
+    /**
+     * Takes in the position for the recipe in the list, and uses it to bind its data to the view
+     * @param position Position in the list for this recipe
+     */
     private void loadRecipe(String position){
         int pos = Integer.parseInt(position);
         Recipe recipe = DataProvider.getRecipes().get(pos);

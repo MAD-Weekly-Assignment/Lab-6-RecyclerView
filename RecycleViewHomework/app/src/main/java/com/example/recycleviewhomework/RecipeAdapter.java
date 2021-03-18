@@ -1,16 +1,16 @@
-package com.example.recycleviewhomework;
+package com.example.RecycleViewHomework;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 
 import java.util.LinkedList;
 
@@ -34,6 +34,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         private RecipeAdapter adapter;
         private final CardView card;
 
+        /**
+         * Constructor for the Recipe View Holder
+         * @param itemView The View
+         * @param adapter The data adapter
+         */
         public RecipeViewHolder(View itemView, RecipeAdapter adapter) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.title);
@@ -44,6 +49,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         }
 
+        /**
+         * On click method for the RecipeViewHolder
+         * @param view
+         */
         @Override
         public void onClick(View view) {
             position = getAdapterPosition();
@@ -66,6 +75,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         this.context = context;
     }
 
+
+    /**
+     * Creates a view holder for a specific item in the Dataset, and returns it to the view
+     * @param viewGroup
+     * @param i
+     * @return
+     */
     @Override
     public RecipeAdapter.RecipeViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View mItemView = mInflater.inflate(R.layout.recipe, viewGroup, false);
@@ -73,7 +89,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     }
 
 
-
+    /**
+     * Binds the data to the ViewHolder
+     * @param recipeViewHolder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder recipeViewHolder, int i) {
         Recipe recipe = mRecipes.get(i);
@@ -81,6 +101,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         recipeViewHolder.description.setText(recipe.description);
     }
 
+    /**
+     * Get the number of items in the dataset
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mRecipes.size();

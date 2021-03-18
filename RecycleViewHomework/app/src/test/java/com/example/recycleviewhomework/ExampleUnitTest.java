@@ -1,4 +1,4 @@
-package com.example.recycleviewhomework;
+package com.example.RecycleViewHomework;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.recycleviewhomework;
+package com.example.RecycleViewHomework;
 
 import java.util.LinkedList;
 
@@ -13,8 +13,8 @@ public class DataProvider {
         recipes = new LinkedList<Recipe>();
 
 
-        String name = "Banana Walnut Pudding";
-        String description = "This recipe is very old. " +
+        String name = "Walnut Banana Bread Pudding";
+        String description = "My mom has been making this recipe since I was little. " +
                 "This dessert is a big hit at every barbecue and potluck I bring this to! Sometimes I use pecans " +
                 "instead of walnuts. This is great with coconuts, raisins, and dried cranberries, too!";
         String image = "https://images.media-allrecipes.com/userphotos/250x250/829687.jpg";

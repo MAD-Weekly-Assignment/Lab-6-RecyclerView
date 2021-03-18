@@ -1,4 +1,4 @@
-package com.example.recycleviewhomework;
+package com.example.RecycleViewHomework;
 
 public class Recipe {
     public Recipe(String name, String description, String image, String ingredients, String directions) {
